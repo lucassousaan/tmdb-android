@@ -1,0 +1,23 @@
+# Arquivos gerados pelo sistema de build
+*.apk
+*.aab
+*.ap_
+*.apks
+*.dex
+*.class
+/build/
+
+# Pastas do Android Studio e IntelliJ
+.gradle/
+.idea/
+captures/
+.cxx/
+local.properties
+
+# Arquivos de dependências
+/app/libs/
+/libs/
+
+# Arquivos de log e cache
+*.log
+*.iml
