@@ -42,7 +42,7 @@ Para rodar este projeto, você precisará de uma chave de API do TMDB.
     ```
 5.  Sincronize e compile o projeto.
 
-> **Nota:** Para que a chave no `local.properties` funcione, o arquivo `app/build.gradle.kts` deve ser configurado para lê-la e o `buildConfig` deve estar ativado. Garanta que seu arquivo tenha uma estrutura parecida com esta:`:
+> **Nota:** Para que a chave no `local.properties` funcione, o arquivo `app/build.gradle.kts` deve ser configurado para lê-la e o `buildConfig` deve estar ativado. Garanta que seu arquivo tenha uma estrutura parecida com esta:
 > ```kotlin
 > android {
 >     buildFeatures {
