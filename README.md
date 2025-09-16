@@ -42,11 +42,27 @@ Para rodar este projeto, você precisará de uma chave de API do TMDB.
     ```
 5.  Sincronize e compile o projeto.
 
-> **Nota:** Para que a chave no `local.properties` funcione, o arquivo `app/build.gradle.kts` deve ser configurado para lê-la. Adicione o seguinte código no bloco `android { defaultConfig { ... } }`:
+> **Nota:** Para que a chave no `local.properties` funcione, o arquivo `app/build.gradle.kts` deve ser configurado para lê-la e o `buildConfig` deve estar ativado. Garanta que seu arquivo tenha uma estrutura parecida com esta:`:
 > ```kotlin
-> val properties = java.util.Properties()
-> properties.load(project.rootProject.file("local.properties").inputStream())
-> buildConfigField("String", "TMDB_API_KEY", "\"${properties.getProperty("tmdb_api_key")}\"")
+> android {
+>     buildFeatures {
+>         compose = true
+>         buildConfig = true // Garanta que esta linha exista
+>     }
+>
+>     defaultConfig {
+>         // ... outras configurações
+>
+>         // Lê e expõe a chave da API
+>         val properties = java.util.Properties()
+>         val localPropertiesFile = project.rootProject.file("local.properties")
+>         if (localPropertiesFile.exists()) {
+>             properties.load(localPropertiesFile.inputStream())
+>         }
+>         buildConfigField("String", "TMDB_API_KEY", "\"${properties.getProperty("tmdb_api_key")}\"")
+>     }
+>     // ...
+> }
 > ```
 
 ---
