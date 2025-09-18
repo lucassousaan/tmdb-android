@@ -22,4 +22,6 @@ interface MovieRepository {
 
     suspend fun isMovieFavorited(movieId: Int): Boolean
 
+    suspend fun getMovieDetails(movieId: Int): Result<Movie>
+
 }
