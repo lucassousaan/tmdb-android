@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movies</string>
+    <string name="poster_do_filme">Poster do filme %1$s</string>
+    <string name="filmes_populares">Filmes Populares</string>
 </resources>
