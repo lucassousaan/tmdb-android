@@ -2,4 +2,7 @@
     <string name="app_name">Movies</string>
     <string name="poster_do_filme">Poster do filme %1$s</string>
     <string name="filmes_populares">Filmes Populares</string>
+    <string name="melhores_avaliados">Melhores avaliados</string>
+    <string name="populares_hoje">Populares Hoje</string>
+    <string name="pr_ximos_lan_amentos">Próximos Lançamentos</string>
 </resources>

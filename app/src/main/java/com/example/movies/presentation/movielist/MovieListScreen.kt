@@ -62,7 +62,7 @@ fun MovieListScreen(
             }
             is MovieListUiState.Success -> {
                 MovieList(
-                    movies = state.movies,
+                    data = state.data,
                     modifier = Modifier.padding(innerPadding)
                 )
             }
@@ -72,17 +72,24 @@ fun MovieListScreen(
 
 @Composable
 fun MovieList(
-    movies: List<Movie>,
+    data: MovieListData,
     modifier: Modifier = Modifier
 ) {
+    val categories = listOf(
+        stringResource(R.string.filmes_populares) to data.popularMoviesState,
+        stringResource(R.string.melhores_avaliados) to data.topRatedMoviesState,
+        stringResource(R.string.populares_hoje) to data.trendingTodayMoviesState,
+        stringResource(R.string.pr_ximos_lan_amentos) to data.upcomingMoviesState,
+    )
+
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        item {
+        items(categories) { (title, state) ->
             MovieCategoryRow(
-                categoryTitle = stringResource(R.string.filmes_populares),
-                movies = movies
+                categoryTitle = title,
+                categoryState = state
             )
         }
     }
@@ -91,7 +98,7 @@ fun MovieList(
 @Composable
 fun MovieCategoryRow(
     categoryTitle: String,
-    movies: List<Movie>
+    categoryState: CategoryState
 ) {
     Column {
         Text(
@@ -99,12 +106,41 @@ fun MovieCategoryRow(
             style = MaterialTheme.typography.titleLarge,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
-        LazyRow(
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            items(movies) {
-                MovieListItem(movie = it)
+        when (categoryState) {
+            is CategoryState.Loading -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+
+            is CategoryState.Error -> {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = categoryState.message,
+                        color = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+
+            is CategoryState.Success -> {
+                LazyRow(
+                    contentPadding = PaddingValues(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(categoryState.movies) {
+                        MovieListItem(movie = it)
+                    }
+                }
             }
         }
     }
