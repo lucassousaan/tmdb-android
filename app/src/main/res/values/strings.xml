@@ -5,4 +5,7 @@
     <string name="melhores_avaliados">Melhores avaliados</string>
     <string name="populares_hoje">Populares Hoje</string>
     <string name="pr_ximos_lan_amentos">Próximos Lançamentos</string>
+    <string name="movies">Filmes</string>
+    <string name="search">Buscar</string>
+    <string name="favorites">Favoritos</string>
 </resources>

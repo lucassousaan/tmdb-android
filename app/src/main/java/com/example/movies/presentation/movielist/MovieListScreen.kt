@@ -38,13 +38,12 @@ fun MovieListScreen(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-    Scaffold { innerPadding ->
+    Box {
         when (val state = uiState.value) {
             is MovieListUiState.Loading -> {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
+                        .fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
                     CircularProgressIndicator()
@@ -53,8 +52,7 @@ fun MovieListScreen(
             is MovieListUiState.Error -> {
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .padding(innerPadding),
+                        .fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
                     Text(text = state.message)
@@ -63,7 +61,6 @@ fun MovieListScreen(
             is MovieListUiState.Success -> {
                 MovieList(
                     data = state.data,
-                    modifier = Modifier.padding(innerPadding)
                 )
             }
         }
