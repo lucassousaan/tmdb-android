@@ -8,4 +8,7 @@
     <string name="movies">Filmes</string>
     <string name="search">Buscar</string>
     <string name="favorites">Favoritos</string>
+    <string name="buscar_filme">Buscar Filme</string>
+    <string name="digite_algo_para_buscar_filmes">Digite algo para buscar filmes.</string>
+    <string name="nenhum_resultado_encontrado">Nenhum resultado encontrado.</string>
 </resources>
